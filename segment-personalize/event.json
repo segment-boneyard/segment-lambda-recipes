@@ -1,0 +1,22 @@
+{
+  "channel": "server",
+  "context": {
+    "library": {
+      "name": "unknown",
+      "version": "unknown"
+    }
+  },
+  "event": "Test Order Completed",
+  "integrations": {
+  },
+  "messageId": "api-kC2rfOoxM8tLQOhHeNDNzHptOkmYynUP",
+  "projectId": "ORiQobZE19",
+  "properties": {
+    "property1": 1
+  },
+  "receivedAt": "2019-03-13T20:03:45.115Z",
+  "timestamp": "2019-03-13T20:03:45.115Z",
+  "type": "track",
+  "userId": "test-user-igor",
+  "version": 2
+}
