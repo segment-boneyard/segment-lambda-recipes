@@ -1,0 +1,9 @@
+{
+  "name": "integration-lambda-boomtrain",
+  "proxy": {
+    "command": "micro --host localhost --port $PORT"
+  },
+  "lambda": {
+    "memory": 1024
+  }
+}
