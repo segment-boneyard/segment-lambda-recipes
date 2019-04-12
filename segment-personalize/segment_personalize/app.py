@@ -53,7 +53,7 @@ def lambda_handler(event, context):
         runtime_params['endpoint_url'] = os.environ['endpoint_url']
 
     personalize_runtime = boto3.client(**runtime_params)
-    personalize_events = boto3.client('personalize-events')
+    personalize_events = boto3.client(service_name='personalize-events')
 
     # Segment will invoke your function once per event type you have configured
     # in the Personalize destination
@@ -102,7 +102,7 @@ def lambda_handler(event, context):
         print("Invalid JSON format received, check your event sources.")
     except KeyError as ke:
         print("Invalid configuration for Personalize, most likely.")
-        context.done()
     except ClientError as ce:
         print("ClientError - most likely a boto3 issue.")
         print(ce.response['Error']['Code'])
+        print(ce.response['Error']['Message'])
