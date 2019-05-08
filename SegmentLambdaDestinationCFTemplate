@@ -1,0 +1,115 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "c181028f-4af2-46bb-a7c1-4ac5424197e2": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 383.0049133300781,
+                    "y": 130.00657653808594
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "b36f92be-db81-4587-9003-9e7cb36dd51e"
+                ]
+            },
+            "b36f92be-db81-4587-9003-9e7cb36dd51e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 149.00491333007812,
+                    "y": 130.00657653808594
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "d6a13e0a-4e28-4e47-9b9b-f1f4a4b73139": {
+                "source": {
+                    "id": "c181028f-4af2-46bb-a7c1-4ac5424197e2"
+                },
+                "target": {
+                    "id": "b36f92be-db81-4587-9003-9e7cb36dd51e"
+                },
+                "z": 1
+            }
+        }
+    },
+    "Resources": {
+        "invokeLambdaRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "AWS": "arn:aws:iam::595280932656:root"
+                            },
+                            "Action": "sts:AssumeRole",
+                            "Condition": {
+                                "StringEquals": {
+                                    "sts:ExternalId": {
+                                        "Ref": "ExternalId"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b36f92be-db81-4587-9003-9e7cb36dd51e"
+                }
+            }
+        },
+        "invokeLambdaPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "segment-invoke-lambda",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": "lambda:InvokeFunction",
+                            "Resource": [
+                                {
+                                    "Ref": "LambdaARN"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "Roles": [
+                    {
+                        "Ref": "invokeLambdaRole"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c181028f-4af2-46bb-a7c1-4ac5424197e2"
+                }
+            }
+        }
+    },
+    "Parameters": {
+        "ExternalId": {
+            "Type": "String",
+            "Default": "external-id",
+            "Description": "Enter external ID for the role."
+        },
+        "LambdaARN": {
+            "Type": "String",
+            "Description": "Lambda ARN to invoke."
+        }
+    }
+}
