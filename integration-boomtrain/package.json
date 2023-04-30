@@ -7,6 +7,6 @@
     "axios": "^0.18.0",
     "basic-auth": "^2.0.1",
     "micro": "^9.3.3",
-    "segmentio-facade": "^3.2.3"
+    "segmentio-facade": "^3.2.7"
   }
 }
